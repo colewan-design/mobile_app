@@ -21,130 +21,82 @@ class MyHomePage extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
-        children: [
-          _buildCard(
-            context: context,
-            icon: Icons.attach_money,
-            title: 'Payslips',
-            onTap: () {
-              // Handle onTap for payslips card
-            },
-          ),
-          const SizedBox(height: 16.0),
-          _buildCard(
-            context: context,
-            icon: Icons.history,
-            title: 'History',
-            onTap: () {
-              // Handle onTap for history card
-            },
-          ),
-          const SizedBox(height: 16.0),
-          _buildCard(
-            context: context,
-            icon: Icons.bug_report,
-            title: 'Bugs',
-            onTap: () {
-              // Handle onTap for bugs card
-            },
-          ),
+        children: const [
+          // Your card widgets here
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: Colors.white),
-                accountName: Text(
-                  'CBOO Admin',
-                  style: TextStyle(fontSize: 18, color: Colors.black87),
-                ),
-                accountEmail: Text(
-                  'sample@email.com',
-                  style: TextStyle(color: Colors.black87),
-                ),
-                currentAccountPictureSize: Size.square(50),
-                currentAccountPicture: CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  child: Text(
-                    'A',
-                    style: TextStyle(fontSize: 30.0, color: Colors.blue),
-                  ),
-                ),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text(
-                ' My Profile ',
-                style: TextStyle(color: Colors.black87),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ProfilePage(
-                      userName: 'CBOO Admin',
-                      userEmail: 'sample@email.com',
+        child: FutureBuilder<UserData>(
+          future: _fetchUserData(), // Call the method to fetch user data
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              final userData = snapshot.data!;
+              return ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  UserAccountsDrawerHeader(
+                    currentAccountPicture: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          'https://images.unsplash.com/photo-1485290334039-a3c69043e517?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyOTU3NDE0MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'),
+                    ),
+                    accountEmail: Text(userData.email),
+                    accountName: Text(
+                      userData.name,
+                      style: TextStyle(fontSize: 24.0),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.black87,
                     ),
                   ),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text(
-                'Logout',
-                style: TextStyle(color: Colors.black87),
-              ),
-              onTap: () => _logout(context),
-            ),
-          ],
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text(
+                      ' My Profile ',
+                      style: TextStyle(color: Colors.black87),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfilePage(
+                            userName: userData.name, // Pass user name
+                            userEmail: userData.email, // Pass user email
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  // Other drawer items
+                ],
+              );
+            }
+          },
         ),
       ),
     );
   }
 
-  Widget _buildCard({
-    required BuildContext context, // Accept BuildContext as a parameter
-    required IconData icon,
-    required String title,
-    required VoidCallback onTap,
-  }) {
-    return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                size: 32.0,
-                color:
-                    Theme.of(context).primaryColor, // Use the provided context
-              ),
-              const SizedBox(width: 16.0),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 18.0),
-              ),
-              const Spacer(),
-            ],
-          ),
-        ),
-      ),
+  Future<UserData> _fetchUserData() async {
+    const url = 'http://192.168.110.72/api/user';
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Accept': 'application/json',
+      },
     );
+
+    if (response.statusCode == 200) {
+      final userData = jsonDecode(response.body)['data'];
+      return UserData.fromJson(userData);
+    } else {
+      throw Exception('Failed to load user data');
+    }
   }
 
   void _logout(BuildContext context) {
@@ -153,6 +105,26 @@ class MyHomePage extends StatelessWidget {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
+  }
+}
+
+class UserData {
+  final int id;
+  final String name;
+  final String email;
+
+  UserData({
+    required this.id,
+    required this.name,
+    required this.email,
+  });
+
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    return UserData(
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
     );
   }
 }
