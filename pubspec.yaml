@@ -65,6 +65,26 @@ flutter:
   assets:
     - assets/profile/cboo-profile.png
     - assets/Icon-192.png
+    - assets/flag.png
+    - assets/avatar.png
+    - assets/bagongPilipinas.png
+    - assets/wallet.png
+    - assets/chronometer.png
+    - assets/payroll.png
+    - assets/leave.png
+    - assets/monitor.png
+    - assets/notice.png
+    - assets/performance.png
+    - assets/growth.png
+    - assets/gradient/time-management.png
+    - assets/gradient/exclamation-mark.png
+    - assets/gradient/report-card.png
+    - assets/gradient/sunbed.png
+    - assets/gradient/credit.png
+    - assets/gradient/error.png
+    - assets/gradient/responsibility.png
+    - assets/gradient/tax.png
+    - assets/gradient/edit.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
