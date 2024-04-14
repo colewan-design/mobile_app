@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cboo_mobile_app/user/account-menu.dart';
 import 'package:cboo_mobile_app/home_page.dart';
+import 'package:cboo_mobile_app/user/message_page.dart';
+
 
 class NavBar extends StatelessWidget {
   final int pageIndex;
@@ -34,11 +36,22 @@ class NavBar extends StatelessWidget {
                   isSelected: pageIndex == 0,
                   onTap: () => onTap(0),
                 ),
-                navItem(
-                  Icons.newspaper,
-                  'News',
+                  navItem(
+                  Icons.message,
+                  'Messages',
                   isSelected: pageIndex == 1,
-                  onTap: () => onTap(1),
+                  onTap: () {
+                    // Route to MessagesPage when Messages navbar is clicked
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MessagePage(
+                           userName: userData.name,
+                           userEmail: userData.email,
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(width: 80),
                 navItem(
@@ -82,7 +95,7 @@ class NavBar extends StatelessWidget {
             Icon(
               icon,
               color: isSelected
-                  ? Color.fromARGB(255, 10, 29, 117)
+                  ? Color.fromARGB(255, 59, 42, 17)
                   : const Color.fromARGB(255, 44, 44, 44),
             ),
             Text(

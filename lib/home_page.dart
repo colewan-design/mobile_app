@@ -15,7 +15,8 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50,
-        backgroundColor: Colors.teal[50],
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -296,7 +297,7 @@ class MyHomePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
           ),
           child: const Icon(
-            Icons.add,
+            Icons.settings_input_antenna,
             color: Colors.white,
           ),
         ),
@@ -308,7 +309,7 @@ class MyHomePage extends StatelessWidget {
             return NavBar(
               pageIndex: 0,
               onTap: (index) {
-                // Handle navigation based on the index if needed
+              
               },
               userData:
                   snapshot.data!, // Pass the fetched user data to the NavBar
@@ -375,7 +376,7 @@ class MyHomePage extends StatelessWidget {
   }
 
   Future<UserData> _fetchUserData() async {
-    const url = 'http://192.168.110.72/api/user';
+    const url = 'http://192.168.0.106/api/user';
     final response = await http.get(
       Uri.parse(url),
       headers: {
