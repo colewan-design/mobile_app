@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.0.106/login'),
+        Uri.parse('http://192.168.110.72/login'),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           'accept': 'application/json',
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-         decoration: const BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
         ),
         child: Center(

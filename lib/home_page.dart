@@ -308,9 +308,7 @@ class MyHomePage extends StatelessWidget {
           if (snapshot.hasData) {
             return NavBar(
               pageIndex: 0,
-              onTap: (index) {
-              
-              },
+              onTap: (index) {},
               userData:
                   snapshot.data!, // Pass the fetched user data to the NavBar
             );
@@ -376,7 +374,7 @@ class MyHomePage extends StatelessWidget {
   }
 
   Future<UserData> _fetchUserData() async {
-    const url = 'http://192.168.0.106/api/user';
+    const url = 'http://192.168.110.72/api/user';
     final response = await http.get(
       Uri.parse(url),
       headers: {

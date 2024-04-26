@@ -5,7 +5,6 @@ import 'package:cboo_mobile_app/user/account-menu.dart';
 import 'package:cboo_mobile_app/home_page.dart';
 import 'package:cboo_mobile_app/user/message_page.dart';
 
-
 class NavBar extends StatelessWidget {
   final int pageIndex;
   final Function(int) onTap;
@@ -36,7 +35,7 @@ class NavBar extends StatelessWidget {
                   isSelected: pageIndex == 0,
                   onTap: () => onTap(0),
                 ),
-                  navItem(
+                navItem(
                   Icons.message,
                   'Messages',
                   isSelected: pageIndex == 1,
@@ -46,8 +45,8 @@ class NavBar extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => MessagePage(
-                           userName: userData.name,
-                           userEmail: userData.email,
+                          userName: userData.name,
+                          userEmail: userData.email,
                         ),
                       ),
                     );
