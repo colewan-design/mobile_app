@@ -1,4 +1,8 @@
 import 'dart:convert';
+import 'package:cboo_mobile_app/user_data.dart';
+import 'package:cboo_mobile_app/widgets/card_widget.dart';
+import 'package:cboo_mobile_app/widgets/circular_card_widget.dart';
+import 'package:cboo_mobile_app/widgets/custom_drawer_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:cboo_mobile_app/user/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -117,72 +121,76 @@ class MyHomePage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildCircularCard(
-                      Image.asset('assets/gradient/time-management.png'),
+                    buildCircularCard(
+                      Image.asset('assets/gradient/edit.png'),
                       Colors.teal.shade50,
                       30.0, // Adjust the icon size as needed
                     ),
                     const SizedBox(height: 8.0),
                     const Text(
-                      'DTR',
+                      'PR',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildCircularCard(
+                    buildCircularCard(
                       Image.asset('assets/gradient/credit.png'),
                       Colors.teal.shade50,
                       30.0, // Adjust the icon size as needed
                     ),
                     const SizedBox(height: 8.0),
                     const Text(
-                      'PAY',
+                      'PR',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildCircularCard(
+                    buildCircularCard(
                       Image.asset('assets/gradient/sunbed.png'),
                       Colors.teal.shade50,
                       30.0, // Adjust the icon size as needed
                     ),
                     const SizedBox(height: 8.0),
                     const Text(
-                      'LEAVE',
+                      'PR',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildCircularCard(
+                    buildCircularCard(
                       Image.asset('assets/gradient/report-card.png'),
                       Colors.teal.shade50,
                       30.0, // Adjust the icon size as needed
                     ),
                     const SizedBox(height: 8.0),
                     const Text(
-                      'REPORT',
+                      'PR',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
@@ -196,61 +204,64 @@ class MyHomePage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildCircularCard(
+                    buildCircularCard(
                       Image.asset('assets/gradient/error.png'),
                       Colors.teal.shade50,
                       30.0, // Adjust the icon size as needed
                     ),
                     const SizedBox(height: 8.0),
                     const Text(
-                      'NOTICE',
+                      'PR',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildCircularCard(
+                    buildCircularCard(
                       Image.asset('assets/gradient/responsibility.png'),
                       Colors.teal.shade50,
                       30.0, // Adjust the icon size as needed
                     ),
                     const SizedBox(height: 8.0),
                     const Text(
-                      'BENEFITS',
+                      'PR',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildCircularCard(
+                    buildCircularCard(
                       Image.asset('assets/gradient/tax.png'),
                       Colors.teal.shade50,
                       30.0, // Adjust the icon size as needed
                     ),
                     const SizedBox(height: 8.0),
                     const Text(
-                      'TAX',
+                      'PR',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildCircularCard(
+                    buildCircularCard(
                       Image.asset('assets/gradient/edit.png'),
                       Colors.teal.shade50,
                       30.0, // Adjust the icon size as needed
@@ -259,9 +270,10 @@ class MyHomePage extends StatelessWidget {
                     const Text(
                       'PR',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
@@ -275,7 +287,7 @@ class MyHomePage extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width -
                       32, // Adjust width as needed
-                  child: const CardExample(),
+                  child: const CardWidget(),
                 ),
               ],
             ),
@@ -317,59 +329,7 @@ class MyHomePage extends StatelessWidget {
           }
         },
       ),
-      drawer: Drawer(
-        child: FutureBuilder<UserData>(
-          future: _fetchUserData(), // Call the method to fetch user data
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else {
-              final userData = snapshot.data!;
-              return ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  UserAccountsDrawerHeader(
-                    currentAccountPicture: const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://images.unsplash.com/photo-1485290334039-a3c69043e517?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyOTU3NDE0MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'),
-                    ),
-                    accountEmail: Text(userData.email),
-                    accountName: Text(
-                      userData.name,
-                      style: const TextStyle(fontSize: 24.0),
-                    ),
-                    decoration: const BoxDecoration(
-                      color: Colors.black87,
-                    ),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.person),
-                    title: const Text(
-                      ' My Profile ',
-                      style: TextStyle(color: Colors.black87),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProfilePage(
-                            userName: userData.name, // Pass user name
-                            userEmail: userData.email, // Pass user email
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  // Other drawer items
-                ],
-              );
-            }
-          },
-        ),
-      ),
+      drawer: CustomDrawer(token: token),
     );
   }
 
@@ -389,81 +349,5 @@ class MyHomePage extends StatelessWidget {
     } else {
       throw Exception('Failed to load user data');
     }
-  }
-
-  Widget _buildCircularCard(Widget iconWidget, Color color, double iconSize) {
-    return Container(
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-      ),
-      child: Center(
-        child: SizedBox(
-          width: iconSize,
-          height: iconSize,
-          child: iconWidget,
-        ),
-      ),
-    );
-  }
-}
-
-class CardExample extends StatelessWidget {
-  const CardExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Image.asset('assets/wallet.png', width: 40, height: 40),
-              title: const Text('Your Payslip has been updated'),
-              subtitle:
-                  const Text('Click this card to visit the payslip page.'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  child: const Text('View'),
-                  onPressed: () {/* ... */},
-                ),
-                const SizedBox(width: 8),
-                TextButton(
-                  child: const Text('Download'),
-                  onPressed: () {/* ... */},
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class UserData {
-  final int id;
-  final String name;
-  final String email;
-
-  UserData({
-    required this.id,
-    required this.name,
-    required this.email,
-  });
-
-  factory UserData.fromJson(Map<String, dynamic> json) {
-    return UserData(
-      id: json['id'],
-      name: json['name'],
-      email: json['email'],
-    );
   }
 }

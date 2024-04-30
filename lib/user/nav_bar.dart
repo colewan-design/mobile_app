@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cboo_mobile_app/user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:cboo_mobile_app/user/account-menu.dart';
 import 'package:cboo_mobile_app/home_page.dart';
@@ -41,15 +42,7 @@ class NavBar extends StatelessWidget {
                   isSelected: pageIndex == 1,
                   onTap: () {
                     // Route to MessagesPage when Messages navbar is clicked
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MessagePage(
-                          userName: userData.name,
-                          userEmail: userData.email,
-                        ),
-                      ),
-                    );
+                    Navigator.pushNamed(context, '/chat');
                   },
                 ),
                 const SizedBox(width: 80),

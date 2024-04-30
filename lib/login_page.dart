@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:cboo_mobile_app/utils/textfield_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:social_media_buttons/social_media_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -89,16 +92,20 @@ class _LoginPageState extends State<LoginPage> {
                 children: <Widget>[
                   TextField(
                     onChanged: (value) => email = value,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Email',
+                      hintText: 'Add Email',
+                      hintStyle: ThemeTextStyle.loginTextFieldStyle,
                       border: OutlineInputBorder(),
                     ),
                   ),
                   const SizedBox(height: 10),
                   TextField(
                     onChanged: (value) => password = value,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Password',
+                      hintText: 'Add Password',
+                      hintStyle: ThemeTextStyle.loginTextFieldStyle,
                       border: OutlineInputBorder(),
                     ),
                     obscureText: true,
@@ -112,6 +119,30 @@ class _LoginPageState extends State<LoginPage> {
                         ? const CircularProgressIndicator() // Show loader when loading
                         : const Text('Login'),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          launch("https://twitter.com/");
+                        },
+                        child: SocialMediaButton.twitter(
+                          color: Colors.blue,
+                          size: 20,
+                          url: "https://twitter.com/",
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          launch("https://www.linkedin.com/");
+                        },
+                        child: SocialMediaButton.linkedin(
+                          size: 20,
+                          url: "https://www.linkedin.com/",
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
