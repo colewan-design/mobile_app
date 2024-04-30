@@ -124,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          launch("https://twitter.com/");
+                          launchUrl("https://twitter.com/" as Uri);
                         },
                         child: SocialMediaButton.twitter(
                           color: Colors.blue,
@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          launch("https://www.linkedin.com/");
+                          launchUrl("https://www.linkedin.com/" as Uri);
                         },
                         child: SocialMediaButton.linkedin(
                           size: 20,
